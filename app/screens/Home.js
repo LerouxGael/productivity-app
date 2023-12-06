@@ -3,12 +3,22 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import Button from "@components/UI/Button";
 
+import useAsyncStorageCRUD from "@hooks/useAsyncStorageCRUD";
+
+import ToDoCard from "@components/UI/ToDOCard";
+
 export default function Home({navigation}){
+    const {toDoList} = useAsyncStorageCRUD();
     function handlePress(){
       navigation.navigate("ToDoCreate");
     }
     return (
     <View style={styles.container}>
+      {toDoList.map(({title, description}, index)=> {
+        return (
+        <ToDoCard key={index} title={title} description= {description}/>          
+       )
+      })}
       <Button onPress={handlePress}>+ Add a to-do</Button>
     </View>
     );

@@ -4,12 +4,17 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import Navigation from "@navigation/Navigation";
 
+import {AppStateProvider} from "./app/state/AppContext";
+
 
 
 export default function App() {
  
   return (
-      <Navigation/>
+      <AppStateProvider>
+        <Navigation/>
+      </AppStateProvider>
+      
   );
 }
 
