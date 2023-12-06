@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, ScrollView} from 'react-native';
 
 import Button from "@components/UI/Button";
 
@@ -7,20 +7,37 @@ import useAsyncStorageCRUD from "@hooks/useAsyncStorageCRUD";
 
 import ToDoCard from "@components/UI/ToDOCard";
 
+import Title from "@components/UI/Title";
+
 export default function Home({navigation}){
-    const {toDoList} = useAsyncStorageCRUD();
+    const {toDoList, toDoDelete, toDoUpdate} = useAsyncStorageCRUD();
+
     function handlePress(){
       navigation.navigate("ToDoCreate");
     }
     return (
-    <View style={styles.container}>
-      {toDoList.map(({title, description}, index)=> {
+    <ScrollView contentContainerStyle={styles.container}>
+      <Title>My To-do App</Title>
+      {toDoList.map(({title, description, checked}, index)=> {
+        function handleDelete(){
+          toDoDelete(index);
+        }
+        function handleCheckedChange(){
+          toDoUpdate(index, {title, description, checked : !checked});
+        }
         return (
-        <ToDoCard key={index} title={title} description= {description}/>          
+        <ToDoCard 
+        key={index} 
+        title={title} 
+        description= {description} 
+        checked={checked} 
+        handleDelete={handleDelete}
+        handleCheckedChange={handleCheckedChange}
+        />          
        )
       })}
-      <Button onPress={handlePress}>+ Add a to-do</Button>
-    </View>
+      <Button onPress={handlePress}>New task</Button>
+    </ScrollView>
     );
 }
 

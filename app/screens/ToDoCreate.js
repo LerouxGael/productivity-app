@@ -6,6 +6,9 @@ import Button from "@components/UI/Button";
 
 import useNewToDoManage from "@hooks/useNewToDoManage";
 
+import Title from "@components/UI/Title";
+
+
 export default function ToDoCreate({navigation}){
   const {fieldsTab, handleSubmit} = useNewToDoManage();
 
@@ -14,10 +17,11 @@ export default function ToDoCreate({navigation}){
   }
     return (
     <View style={styles.container}>
+      <Title>Add a new Task</Title>
       {fieldsTab.map(({value, onChange, placeholder}) => {
         return <Input key={placeholder} placeholder={placeholder} value={value} onChange= {onChange} />
       })}
-      <Button onPress={handleSubmit} title="back">To-do Add</Button>
+      <Button onPress={handleSubmit} title="back">+ add task to list</Button>
     </View>
     );
 }
@@ -26,10 +30,10 @@ export default function ToDoCreate({navigation}){
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: '#fff',
+      backgroundColor: '#f7f3e9',
       alignItems: 'center',
       justifyContent: 'center',
       padding : 16,
-      backgroundColor: "rgba(0,0,0, 0.1)"
+
     },
   });

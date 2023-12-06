@@ -26,7 +26,7 @@ export default function useNewToDoManage(){
         if(title.length === 0){
             return alert ("The task requires a title");
         }
-        await toDoCreate({title, description});
+        await toDoCreate({title, description, checked : false});
         titleChange("");
         descriptionChange("");
     }
