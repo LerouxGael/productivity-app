@@ -1,5 +1,7 @@
 import React from "react";
-import { StyleSheet, Text, View,Button } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
+
+import Button from "@components/UI/Button";
 
 export default function Home({navigation}){
     function handlePress(){
@@ -7,8 +9,7 @@ export default function Home({navigation}){
     }
     return (
     <View style={styles.container}>
-      <Text>Home page</Text>
-      <Button onPress={handlePress} title="Go to Create page"/>
+      <Button onPress={handlePress}>+ Add a to-do</Button>
     </View>
     );
 }
@@ -20,5 +21,6 @@ const styles = StyleSheet.create({
       backgroundColor: '#fff',
       alignItems: 'center',
       justifyContent: 'center',
+      padding : 16
     },
   });
